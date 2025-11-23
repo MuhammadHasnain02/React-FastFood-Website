@@ -6,10 +6,11 @@ import CollectionPage from "./components/CollectionPage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ProductDetail from "./pages/ProductDetail";
+import CheckoutPage from "./pages/CheckoutPage";
 // import Navbar from "./components/Navbar";
 // import Footer from "./components/Footer";
 
-const routes = ["/cart"];
+// const routes = ["/cart"];
 
 function App() {
   // const location = useLocation();
@@ -17,7 +18,7 @@ function App() {
   return (
     <div className="flex flex-col h-screen justify-between">
 
-      {routes.includes(location.pathname) && <Navbar />}
+      {/* {routes.includes(location.pathname) && <Navbar />} */}
       
       <Routes>
 
@@ -25,11 +26,12 @@ function App() {
         <Route path="/products" element={<CollectionPage />} />
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="*" element={<NotFound />} />
 
       </Routes>
 
-      {routes.includes(location.pathname) && <Footer />}
+      {/* {routes.includes(location.pathname) && <Footer />} */}
 
     </div>
 
