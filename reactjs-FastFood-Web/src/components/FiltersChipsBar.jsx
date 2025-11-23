@@ -26,7 +26,7 @@ function FiltersChipsBar({
 
 
     return (
-        <div className="fade-in TopFiltDiv w-auto -mx-5 sm:-mx-10 md:-mx-15 lg:-mx-20 xl:-mx-32 grid grid-cols-12 text-gray-200 bg-[#556155] 
+        <div className="fade-in TopFiltDiv grid grid-cols-12 text-gray-200 bg-[#556155] 
             px-6 py-4.5 shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
 
             {/* <!-- Left Chips Area --> */}

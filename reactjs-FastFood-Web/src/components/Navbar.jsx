@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Navbar({ onChange }) {
 
+    const navigate = useNavigate()
     let [searchInp , setSearchInp] = useState("")
 
     const handleInp = (e) => {
@@ -36,14 +38,16 @@ function Navbar({ onChange }) {
 
                 <div className="mainLogoDiv flex items-center transition-transform duration-500 hover:cursor-pointer hover:scale-105">
                     <a href="index.html"><i className="navLogo fa-solid fa-utensils text-[25px] text-[#616e61]" ></i></a>
-                    <p className="navLogoTxt text-[21px] pl-2 font-semibold">FOOD</p>
+                    <p className="navLogoTxt text-[21px] pl-2 font-semibold">FastFood</p>
                 </div>
                 <div className="text-center navInp">
                     <input id="searchBox" type="search" onChange={handleInp} value={searchInp} placeholder="Search products..." 
                     className="border border-gray-300 shadow-md shadow-gray-300 rounded-3xl w-[650px] p-[10px] pl-5 font-sans bg-[#e7e7e7] focus:outline-gray-400" />
                 </div>
-                <div className="flex flex-row items-center justify-end hover:cursor-pointer">
-                    <i className="navCartIcon fa-solid fa-cart-shopping text-[25px] text-[#616e61]"></i>
+                <div onClick={() => navigate('/cart')}
+                    className="flex flex-row items-center justify-end hover:cursor-pointer gap-2 rounded-xl border border-gray-300 px-8 py-1 transition duration-400 hover:scale-105">
+                    <i className="navCartIcon fa-solid fa-cart-shopping text-[22px] text-[#616e61]"></i>
+                    <span className="text-[16px]">Cart</span>
                 </div>
 
             </div>

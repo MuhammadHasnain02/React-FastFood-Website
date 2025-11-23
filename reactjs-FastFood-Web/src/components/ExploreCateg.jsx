@@ -1,9 +1,9 @@
-// product-images/burger1.webp
-// product-images/piz1.webp
-// product-images/shawarma1.webp
-// product-images/fries1.jpg
+import { useNavigate } from "react-router-dom"
 
 function ExploreCateg() {
+
+    const navigate = useNavigate()
+
     return (
         
         <section className="w-full max-w-[1400px] mx-auto">
@@ -24,12 +24,12 @@ function ExploreCateg() {
 
                 ].map((item, index) => (
 
-                    <div key={index}
+                    <div key={index} onClick={() => navigate("/products")}
                         className="relative group cursor-pointer rounded-2xl overflow-hidden shadow-lg
                             hover:shadow-2xl transition-all duration-500">
 
                         {/* Image */}
-                        <img src={item.img} alt={item.name}
+                        <img src={item.img} alt={item.name} 
                             className="w-full h-70 object-cover group-hover:scale-110 transition-transform duration-700"/>
 
                         {/* Dark Overlay */}
