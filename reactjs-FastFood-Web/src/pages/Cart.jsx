@@ -1,36 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { useCart } from "../Context/CartContext";
 
-// Dummy products (yahan apka original cart data aye ga)
-const cartItems = [
-  {
-    id: 1,
-    name: "Cheese Burger",
-    price: 450,
-    qty: 2,
-    img: "./product-images/burger1.webp",
-  },
-  {
-    id: 2,
-    name: "Zinger Burger",
-    price: 550,
-    qty: 1,
-    img: "./product-images/burger1.webp",
-  },
-  {
-    id: 3,
-    name: "Large Fries",
-    price: 250,
-    qty: 3,
-    img: "./product-images/burger1.webp",
-  },
-];
 
 export default function CartPage() {
   const navigation = useNavigate()
+  const { cartItems, cartQty , addToCart, updateCartQty , removeCartItem , totalCartItems, totalCartPrice } = useCart();
 
-  const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
+  const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.cartQty, 0);
   const delivery = 200;
   const total = subtotal + delivery;
 
@@ -52,13 +30,13 @@ export default function CartPage() {
             >
               <div className="flex gap-4 items-center">
                 <img
-                  src={item.img}
-                  alt={item.name}
+                  src={item.image}
+                  alt={item.title}
                   className="w-28 h-24 rounded-xl object-cover shadow-md"
                 />
 
                 <div className="flex flex-col">
-                  <h3 className="font-semibold text-xl">{item.name}</h3>
+                  <h3 className="font-semibold text-xl">{item.title}</h3>
                   <p className="text-gray-500 text-sm">Rs {item.price}</p>
                 </div>
               </div>
@@ -67,12 +45,12 @@ export default function CartPage() {
                 {/* Quantity Buttons */}
                 <div className="flex items-center bg-gray-100 px-3 py-1 rounded-xl shadow-inner">
                   <button className="px-3 py-1 text-lg font-bold">-</button>
-                  <span className="px-3 font-medium text-lg">{item.qty}</span>
+                  <span className="px-3 font-medium text-lg">{item.cartQty}</span>
                   <button className="px-3 py-1 text-lg font-bold">+</button>
                 </div>
               </div>
 
-              <p className="font-semibold text-xl w-32 text-right">Rs {item.price * item.qty}</p>
+              <p className="font-semibold text-xl w-32 text-right">Rs {item.price * item.cartQty}</p>
             </div>
           ))}
         </div>

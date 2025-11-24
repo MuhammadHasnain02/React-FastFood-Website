@@ -7,8 +7,6 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ProductDetail from "./pages/ProductDetail";
 import CheckoutPage from "./pages/CheckoutPage";
-// import Navbar from "./components/Navbar";
-// import Footer from "./components/Footer";
 
 // const routes = ["/cart"];
 
