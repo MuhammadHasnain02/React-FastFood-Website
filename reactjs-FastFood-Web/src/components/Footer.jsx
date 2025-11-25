@@ -1,5 +1,9 @@
+import { useNavigate } from "react-router-dom"
 
 function Footer() {
+
+    const navigate = useNavigate()
+
     return (
         <footer id="aboutSect" className="mt-auto text-gray-300 pt-12 pb-7 bg-[#556155]">
 
@@ -20,11 +24,14 @@ function Footer() {
                 <div>
                     <h3 className="text-xl font-bold mb-3">Quick Links</h3>
                     <ul className="space-y-2">
-                        <li className="homeBtn hover:underline hover:cursor-pointer">Home</li>
-                        <li className="collectionBtn hover:underline hover:cursor-pointer">Collection</li>
+                        <li onClick={() => navigate('/')}
+                        className="homeBtn hover:underline hover:cursor-pointer">Home</li>
+                        <li onClick={() => navigate('/products')}
+                        className="collectionBtn hover:underline hover:cursor-pointer">Collection</li>
                         <li className="citiesBtn hover:underline hover:cursor-pointer">Cities</li>
                         <li className="reviewsBtn hover:underline hover:cursor-pointer">Reviews</li>
-                        <li className="aboutBtn hover:underline hover:cursor-pointer">About</li>
+                        <li onClick={() => navigate('/about')}
+                        className="aboutBtn hover:underline hover:cursor-pointer">About</li>
                     </ul>
                 </div>
 
@@ -33,7 +40,7 @@ function Footer() {
                     <h3 className="text-xl font-bold mb-3">Contact</h3>
                     <div className="flex items-center space-x-2">
                         <i className="fa-regular fa-envelope text-[17px]"></i>
-                        <p className="font-semibold tracking-wide">support@FastFood.com</p>
+                        <p className="font-semibold tracking-wide">support@fastfood.com</p>
                     </div>
                     <div className="flex items-center space-x-2">
                         <i className="fa-solid fa-phone text-[16px]"></i>

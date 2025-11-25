@@ -19,11 +19,16 @@ function Navbar({ onChange }) {
             <div className="mainNavDiv bg-[#556155] flex flex-row justify-between px-8 gap-10 py-3.5 sm:justify-between md:justify-end lg:justify-end xl:justify-end 2xl:justify-end">
 
                 <ul className="flex space-x-1.5 text-[9px] sm:text-[13px] sm:space-x-5 md:text-[12px] lg:text-[14px] xl:text-[15px] 2xl:text-[15px]">
-                    <li className="homeBtn text-gray-200 hover:underline hover:cursor-pointer">Home</li>
-                    <li className="collectionBtn text-gray-200 hover:underline hover:cursor-pointer">Collection</li>
+                    
+                    <li onClick={() => navigate('/')}
+                    className="homeBtn text-gray-200 hover:underline hover:cursor-pointer">Home</li>
+                    <li onClick={() => navigate('/products')}
+                    className="collectionBtn text-gray-200 hover:underline hover:cursor-pointer">Collection</li>
                     <li className="citiesBtn text-gray-200 hover:underline hover:cursor-pointer">Cities</li>
                     <li className="reviewsBtn text-gray-200 hover:underline hover:cursor-pointer">Reviews</li>
-                    <li className="aboutBtn text-gray-200 hover:underline hover:cursor-pointer">About</li>
+                    <li onClick={() => navigate('/about')}
+                    className="aboutBtn text-gray-200 hover:underline hover:cursor-pointer">About</li>
+                    
                 </ul>
                 <div className="flex flex-row items-center text-[9px] sm:text-[12px] md:text-[11px] lg:text-[13px] xl:text-[15px] 2xl:text-[16px] font-[Montserrat]  hover:cursor-pointer">
                     <i className="fa-regular fa-circle-user text-gray-300 pr-4 sm:pr-5 md:pr-6 lg:pr-6 xl:pr-6 2xl:pr-6"></i>

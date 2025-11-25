@@ -10,6 +10,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import Dashboard from "./pages/dashboard";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
+import About from "./pages/About";
 
 // const routes = ["/cart"];
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
+        <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
 
       </Routes>

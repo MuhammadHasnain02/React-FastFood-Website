@@ -51,12 +51,11 @@ export default function CartPage() {
           </p>
 
           {/* Button */}
-          <a
-            href="/products"
-            className="bg-[#728372] hover:bg-[#5f6f5f] text-white px-8 py-3 rounded-xl text-lg shadow-md transition-all"
+          <p onClick={() => navigation('/products')}
+            className="bg-[#728372] hover:bg-[#5f6f5f] text-white px-8 py-3 rounded-xl text-lg shadow-md transition-all cursor-pointer"
           >
             Start Ordering
-          </a>
+          </p>
         </div>
 
         <Footer />
