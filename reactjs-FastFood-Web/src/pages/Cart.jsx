@@ -12,6 +12,58 @@ export default function CartPage() {
   const delivery = 200;
   const total = subtotal + delivery;
 
+  console.log(cartItems);
+
+  if (!cartItems.length) {
+    
+    return (
+      <div className="flex flex-col min-h-screen justify-between bg-gray-50">
+        <Navbar />
+
+        <div className="flex flex-col items-center justify-center flex-grow px-6 py-20 text-center mt-30">
+          
+          {/* Icon Circle */}
+          <div className="w-32 h-32 bg-white shadow-lg rounded-full flex items-center justify-center mb-6 border border-gray-200">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-16 h-16 text-gray-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 6m0 0h14m-12 0a2 2 0 104 0m8 0a2 2 0 104 0"
+              />
+            </svg>
+          </div>
+
+          {/* Heading */}
+          <h2 className="text-3xl font-bold text-gray-700 mb-2">
+            Your Cart is Empty
+          </h2>
+
+          {/* One-line sentence */}
+          <p className="text-gray-500 text-lg mb-8">
+            Looks like you haven't added anything yet — explore delicious items and fill your cart!
+          </p>
+
+          {/* Button */}
+          <a
+            href="/products"
+            className="bg-[#728372] hover:bg-[#5f6f5f] text-white px-8 py-3 rounded-xl text-lg shadow-md transition-all"
+          >
+            Start Ordering
+          </a>
+        </div>
+
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="bg-gradient-to-br from-gray-100 to-gray-200 flex flex-col">
       <Navbar />
@@ -37,6 +89,7 @@ export default function CartPage() {
 
                 <div className="flex flex-col">
                   <h3 className="font-semibold text-xl">{item.title}</h3>
+                  <p className="text-gray-500 text-md">Drink : {item.cartDrink}</p>
                   <p className="text-gray-500 text-sm">Rs {item.price}</p>
                 </div>
               </div>
@@ -57,7 +110,7 @@ export default function CartPage() {
 
         {/* Order Summary */}
         <div className="bg-white/90 backdrop-blur rounded-3xl shadow-xl p-8 w-full lg:w-1/3 h-fit border border-gray-200">
-          <h2 className="text-2xl font-semibold mb-6">Order Summary</h2>
+          <h2 className="text-[#596a59] text-2xl font-bold mb-6">Order Summary</h2>
 
           <div className="space-y-3 text-lg">
             <div className="flex justify-between">
@@ -67,12 +120,12 @@ export default function CartPage() {
 
             <div className="flex justify-between">
               <span>Delivery Fee</span>
-              <span className="font-medium">Rs {delivery}</span>
+              <span className="font-medium">Rs {!subtotal ? 0 : delivery}</span>
             </div>
 
             <div className="flex justify-between border-t pt-4 text-xl font-bold">
               <span>Total</span>
-              <span>Rs {total}</span>
+              <span>Rs {!subtotal ? 0 : total}</span>
             </div>
           </div>
 

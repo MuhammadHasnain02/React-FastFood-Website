@@ -19,7 +19,7 @@ function CartProvider({ children }) {
     const addToCart = ( cartItem, cartQty, cartDrink ) => {
 
         let productIndex = cartItems.findIndex((item) => {
-            item.id === cartItem.id && item.cartDrink === cartDrink
+            return item.id === cartItem.id && item.cartDrink === cartDrink
         })
 
         if (productIndex === -1) {

@@ -27,8 +27,10 @@ function Navbar({ onChange }) {
                 </ul>
                 <div className="flex flex-row items-center text-[9px] sm:text-[12px] md:text-[11px] lg:text-[13px] xl:text-[15px] 2xl:text-[16px] font-[Montserrat]  hover:cursor-pointer">
                     <i className="fa-regular fa-circle-user text-gray-300 pr-4 sm:pr-5 md:pr-6 lg:pr-6 xl:pr-6 2xl:pr-6"></i>
-                    <a href="#" className="text-gray-200 hover:underline pr-2 border-r-1">LOGIN</a>
-                    <a href="#" className="text-gray-200 hover:underline pl-2">REGISTER</a>
+                    <p onClick={(() => navigate('/signin'))}
+                     className="text-gray-200 hover:underline pr-2 border-r-1">LOGIN</p>
+                    <p onClick={(() => navigate('/signup'))}
+                     className="text-gray-200 hover:underline pl-2">REGISTER</p>
                 </div>
 
             </div>

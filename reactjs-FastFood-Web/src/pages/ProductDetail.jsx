@@ -32,21 +32,6 @@ function ProductDetail() {
 
     let product = products.find(prod => prod.id === +id)
     
-    if (!product) {
-        return (
-        <div>
-            <Navbar />
-            <div className="max-w-4xl mx-auto p-6 text-center text-2xl font-semibold text-gray-600">
-                Product Not Found
-            </div>
-            <Footer />
-        </div>
-        );
-    }
-
-    // if (quantity <= 0) return setQuantity(1)
-    // if (quantity === 10) return setQuantity(10)
-    
     return (
         
         <div className="min-h-screen flex flex-col bg-gray-50 mt-35">
@@ -58,16 +43,16 @@ function ProductDetail() {
                 {/* Image */}
                 <div className="flex justify-center">
                     <img src={product.image} alt={product.name}
-                        className="w-full max-w-md rounded-2xl shadow-lg object-cover"/>
+                    className="w-full max-w-md rounded-2xl shadow-lg object-cover"/>
                 </div>
 
                 {/* Content */}
                 <div className="flex flex-col justify-center">
 
-                    <h1 className="text-4xl font-bold text-gray-800 mb-3">
+                    <h1 className="text-4xl font-bold text-gray-800 mb-2">
                         {product.title}
                     </h1>
-                    <p className={"prodRat text-yellow-400 text-[32px] h-9 flex flex-row gap-1 items-center"}>
+                    <p className={"prodRat text-yellow-400 text-[32px] h-9 flex flex-row gap-1 items-center mb-2"}>
                         {Array(5).fill().map((_, i) => (
                             <i key={i}
                             className={`fa-solid fa-star text-[14px] ${i < product.rating ? "text-yellow-400" : "text-gray-300"}`}
@@ -75,43 +60,47 @@ function ProductDetail() {
                         ))}
                         <span className="text-black text-[15px] flex items-center">({product.rating})</span>
                     </p>
-                    <p className="text-gray-600 text-lg leading-relaxed mb-5">
+                    <p className="text-gray-600 text-lg leading-relaxed mb-4">
                         {product.description}
                     </p>
 
-                    <div className="mb-6">
-                        <label className="block text-lg font-semibold text-gray-800 mb-3">
-                            Select Drink:
-                        </label>
-                        <select value={selectedDrink} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
-                            onChange={(e) => {
-                                setSelectedDrink(e.target.value);
-                            }}>
-                            {drinks.map((drink) => (
-                                <option key={drink.id} value={drink.name}>
-                                {drink.name}
-                                </option>
-                            ))}
-                        </select>
+                    <label className="block text-lg font-semibold text-gray-800 mb-2">
+                        Select Drink:
+                    </label>
+                    <select value={selectedDrink} className="w-full px-4 py-3 mb-6 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
+                        onChange={(e) => {
+                            setSelectedDrink(e.target.value);
+                        }}>
+                        {drinks.map((drink) => (
+                            <option key={drink.id} value={drink.name}>
+                            {drink.name}
+                            </option>
+                        ))}
+                    </select>
+
+                    <div className="flex items-center mb-5">
+                        <div className="flex items-center bg-gray-100 px-3 py-1 rounded-xl shadow-inner">
+
+                            <button className="px-3 py-1 text-lg font-bold"
+                                onClick={() => setQuantity(quantity - 1)} disabled={quantity === 1}>-
+                            </button>
+                            <p className="px-3 font-medium text-lg">{quantity}</p>
+                            <button className="px-3 py-1 text-lg font-bold"
+                                onClick={() => setQuantity(quantity + 1)} disabled={quantity === 10}>+
+                            </button>
+
+                        </div>
                     </div>
 
-                    <div className="flex p-4 space-x-1.5">
+                    <p className="text-[28px] font-semibold text-[#899a89] mb-5">
+                        Rs. {product.price}
+                    </p>
 
-                        <button className="border-2 border-green-500 px-2 cursor-pointer"
-                            onClick={() => setQuantity(quantity - 1)} disabled={quantity === 1}>-
-                        </button>
-                        <p>{quantity}</p>
-                        <button className="border-2 border-green-500 px-2 cursor-pointer"
-                            onClick={() => setQuantity(quantity + 1)} disabled={quantity === 10}>+
-                        </button>
-
-                    </div>
-
-                    <div className="text-3xl font-semibold text-green-600 mb-6">
-                        Rs {product.price}
-                    </div>
-                    <button onClick={() => addToCart(product, quantity, selectedDrink)}
-                    className="bg-[#7b8b7b] text-white px-6 py-3 rounded-xl text-lg shadow-md hover:bg-[#6a796a] hover:cursor-pointer transition-all duration-200 w-full md:w-auto">
+                    <button onClick={() => {
+                            addToCart(product, quantity, selectedDrink)
+                            alert('One Item Added In Your Cart')
+                        }}
+                        className="bg-[#7b8b7b] text-white px-6 py-3 rounded-xl text-lg shadow-md hover:bg-[#6a796a] hover:cursor-pointer transition-all duration-200 w-full md:w-auto">
                         Add to Cart
                     </button>
 

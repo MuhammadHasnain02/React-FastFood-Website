@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { useCart } from "../Context/CartContext";
 
 export default function CheckoutPage() {
+  const { cartItems, cartQty , addToCart, updateCartQty , removeCartItem , totalCartItems, totalCartPrice } = useCart();
+
+  const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.cartQty, 0);
+  const delivery = 200;
+  const tax = Math.round(subtotal * 0.18)
+  const total = subtotal + tax + delivery;
+
   const [form, setForm] = useState({
     fullName: "",
     email: "",
@@ -121,56 +129,46 @@ export default function CheckoutPage() {
 
           {/* ================= RIGHT SIDE — ORDER SUMMARY ================= */}
           <div className="bg-white p-8 rounded-3xl shadow-xl border border-gray-200 h-max sticky top-6">
-            <h2 className="text-3xl font-bold mb-6">Order Summary</h2>
+            <h2 className="text-[#596a59] text-[28px] font-bold mb-4">Order Summary</h2>
 
-            <div className="space-y-4 border-b pb-4 mb-4">
-
-              {/* Product */}
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="font-semibold text-gray-900">Zinger Burger</p>
-                  <p className="text-sm text-gray-500">Qty: 1</p>
+            {cartItems.map((item) => (
+              <div
+                key={item.id}
+                className="flex items-center justify-between border-b pb-3.5 mb-3.5"
+              >
+                <div className="flex gap-4 items-center">
+                  <div className="flex flex-col">
+                    <h3 className="font-semibold text-[19px]">{item.title}</h3>
+                    <p className="text-gray-500 text-[16px]">Drink : {item.cartDrink}</p>
+                    <p className="text-gray-500 text-[15px]">Quantity : {item.cartQty}</p>
+                  </div>
                 </div>
-                <p className="font-semibold">Rs 450</p>
-              </div>
 
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="font-semibold text-gray-900">Chicken Fries</p>
-                  <p className="text-sm text-gray-500">Qty: 2</p>
-                </div>
-                <p className="font-semibold">Rs 600</p>
-              </div>
 
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="font-semibold text-gray-900">Pepsi 500ml</p>
-                  <p className="text-sm text-gray-500">Qty: 1</p>
-                </div>
-                <p className="font-semibold">Rs 120</p>
+                <p className="font-semibold text-xl w-32 text-right">Rs {item.price * item.cartQty}</p>
               </div>
-            </div>
+            ))}
 
             {/* Price Breakdown */}
-            <div className="space-y-2 mb-4">
+            <div className="space-y-2 border-b pb-3.5 mb-4">
               <div className="flex justify-between text-gray-700">
                 <p>Subtotal</p>
-                <p>Rs 1170</p>
+                <p>Rs {subtotal}</p>
               </div>
               <div className="flex justify-between text-gray-700">
                 <p>Delivery</p>
-                <p>Rs 150</p>
+                <p>Rs {!subtotal ? 0 : delivery}</p>
               </div>
               <div className="flex justify-between text-gray-700">
                 <p>Tax</p>
-                <p>Rs 50</p>
+                <p>Rs {tax}</p>
               </div>
             </div>
 
             {/* Total */}
-            <div className="flex justify-between text-xl font-bold">
+            <div className="flex justify-between text-xl font-bold ">
               <p>Total:</p>
-              <p>Rs 1370</p>
+              <p className="">Rs {!subtotal ? 0 : total}</p>
             </div>
           </div>
 
