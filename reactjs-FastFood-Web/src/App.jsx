@@ -7,7 +7,7 @@ import CollectionPage from "./components/CollectionPage";
 // import Footer from "./components/Footer";
 import ProductDetail from "./pages/ProductDetail";
 import CheckoutPage from "./pages/CheckoutPage";
-import Dashboard from "./pages/dashboard";
+import Dashboard from "./pages/Dashboard";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import About from "./pages/About";
@@ -29,7 +29,7 @@ function App() {
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<CheckoutPage />} />
-        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/about" element={<About />} />
